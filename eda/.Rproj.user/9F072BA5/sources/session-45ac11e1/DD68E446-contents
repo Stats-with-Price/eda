@@ -1,4 +1,0 @@
-library('eda')
-
-data(mtcars)
-eda(mtcars, 'mpg')
