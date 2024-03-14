@@ -30,7 +30,7 @@ eda <- function(df, vars, graphs = FALSE) {
         par(mfrow = c(1,1))
       }
     } else if (is.factor(df[[var]])) {
-      cat('Var Type: ', class(df[[var]]))
+      cat('Var Type: ', class(df[[var]]), '\n')
       cat('Table of', var, '\n')
       tab <- table(df[[var]])
       new <- as.data.frame(tab)
