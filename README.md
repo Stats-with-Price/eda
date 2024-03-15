@@ -5,10 +5,15 @@ This function returns the variable name, count, missing values, mean, standard d
 
 **How to Use**:
 After loading in the eda package, use the function like so:
+
 eda(dataframe, "variable_name", graphs = FALSE/TRUE)
+
   where: 
+
   dataframe = the dataset you are using
+  
   variable_name = each variable you want to analyze written in quotation marks
+  
   graphs = TRUE = Returns a histogram and/or a QQ line plot for numeric variables
 
 
