@@ -5,6 +5,11 @@ df$gear <- as.factor(df$gear)
 df$am <- as.factor(df$am)
 
 # Added for loop from Bing Copilot, Thank you!!
+
+#################################################
+# Functions
+
+# eda Function
 eda <- function(df, vars, graphs = FALSE) {
   for (var in vars) {# This is the line Bing Pilot added, everything else was mostly me!!
     cat("Variable: ", var, "\n")
@@ -52,22 +57,30 @@ eda(df, "am", graphs = TRUE) # Numeric with Graphs
 eda(df, c("mpg", "gear", "wt"), graphs = TRUE)
 
 
-aov(wt ~ gear * mpg, data = df)
-
+# anovacomp
 anovacomp <- function(formula, factor_of_interest, data) {
   nov <- aov(formula, data = data)
   summary(nov)
   boxplot(formula, data)
   TukeyHSD(nov, factor_of_interest)
-  # add boxplot, then pairwise compariosns
   }
 
 
-data("ToothGrowth")
-ToothGrowth$dose <- as.factor(ToothGrowth$dose)
+# meancomp
+meancomp <- function(formula, pair = FALSE, normal = FALSE, df) {
+  if(isFALSE(normal)) {
+  wilcox.test(formula, paired = pair, data = df)
+  }
 
-anovacomp(len ~ supp * dose, c("supp", "dose"),ToothGrowth)
-
+  if(isTRUE(normal)) {
+  t <- t.test(formula, paired = pair, data = df)
+  print(t)
+  # Old Code for showing T Distribution (Abandoned)
+    # curve(dt(x, df = t$parameter), from = -4, to = 4)
+    # abline(v = c(t$statistic, qt(p = t$p.value/2, df = t$parameter, lower.tail = FALSE)), col = c("blue", "red"), lty = c(1, 2))
+  }
+  boxplot(formula, data = df)
+}
 
 
 
