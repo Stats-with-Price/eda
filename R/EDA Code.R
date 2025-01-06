@@ -69,7 +69,8 @@ anovacomp <- function(formula, factor_of_interest, data) {
 # meancomp
 meancomp <- function(formula, pair = FALSE, normal = FALSE, df) {
   if(isFALSE(normal)) {
-  wilcox.test(formula, paired = pair, data = df)
+  w <- wilcox.test(formula, paired = pair, data = df)
+  print(w)
   }
 
   if(isTRUE(normal)) {
